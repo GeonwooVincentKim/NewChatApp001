@@ -55,21 +55,72 @@ class _CupertinoChatState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     print('Click');
-    return CupertinoPageScaffold(
-      child: CustomScrollView(
-        slivers: [
-          const CupertinoSliverNavigationBar(
-            largeTitle: Text('Testing')
+    // return CupertinoPageScaffold(
+    //   child: CustomScrollView(
+    //     slivers: [
+    //       const CupertinoSliverNavigationBar(
+    //         largeTitle: Text('Testing')
+    //       ),
+    //       SliverGrid(
+    //         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    //           crossAxisCount: 1, 
+    //           childAspectRatio: 5
+    //         ),
+    //         delegate: SliverChildBuilderDelegate((context, index) => UserCard(findUser: userList[index])),
+    //       )
+    //     ],
+    //   )
+    // );
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
+        currentIndex: 0,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.phone),
+            label: 'First'
           ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1, 
-              childAspectRatio: 5
-            ),
-            delegate: SliverChildBuilderDelegate((context, index) => UserCard(findUser: userList[index])),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.chat_bubble),
+            label: 'Second'
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.settings),
+            label: 'Third'
           )
-        ],
-      )
+        ]
+      ),
+      tabBuilder: ((context, index) {
+        switch (index) {
+          case 0: 
+            return const CupertinoPageScaffold(
+              navigationBar: CupertinoNavigationBar(middle: Text("First")), 
+              child: Center(child: Text('First'))
+            );
+          
+          case 1:
+            return CupertinoPageScaffold(
+              child: CustomScrollView(
+                slivers: [
+                  const CupertinoSliverNavigationBar(
+                    largeTitle: Text('Testing')
+                  ),
+                  SliverGrid(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1, 
+                      childAspectRatio: 5
+                    ),
+                    delegate: SliverChildBuilderDelegate((context, index) => UserCard(findUser: userList[index])),
+                  )
+                ],
+              )
+            );
+        }
+
+        return const CupertinoPageScaffold(
+          navigationBar: CupertinoNavigationBar(middle: Text("First")),
+          child: Center(child: Text("First"))
+        );
+      }),
     );
   }
 }
