@@ -51,7 +51,7 @@ class _CupertinoChatState extends State<Body> {
 
         return const CupertinoPageScaffold(
           navigationBar: CupertinoNavigationBar(middle: Text("First")),
-          child: Center(child: Text("Third"))
+          child: Center(child: Text("First"))
         );
       }),
     );
