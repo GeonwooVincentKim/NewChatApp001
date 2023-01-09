@@ -3,17 +3,17 @@ import 'package:new_ios_chatapp_0/model/user.dart';
 import 'package:new_ios_chatapp_0/provider/user_provider.dart';
 import 'package:new_ios_chatapp_0/widget/list_view/user_card.dart';
 
-class ChatApp extends StatefulWidget {
-  const ChatApp({
+class ChatPage extends StatefulWidget {
+  const ChatPage({
     super.key,
   });
 
 
   @override
-  State<ChatApp> createState() => _ChatAppState();
+  State<ChatPage> createState() => _ChatPageState();
 }
 
-class _ChatAppState extends State<ChatApp> {
+class _ChatPageState extends State<ChatPage> {
   List<User> userList = List.empty(growable: true);
   late TextEditingController _controller;
 
